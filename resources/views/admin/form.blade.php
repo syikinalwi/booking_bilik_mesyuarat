@@ -34,19 +34,18 @@
                                     <a href="#" class="btn btn-danger">Edit</a>
                                 </td>
                             </tr>
-                            <!-- <tr>
+                            <tr>
                                 <td>Bilik Mesyuarat</td>
                                 <td><a href="#" class="btn btn-warning">Daftar</a>
-                                    <a href="{{ route('bookingroom.create') }}" class="btn btn-danger">Edit</a>
+                                    <a href="#" class="btn btn-danger">Edit</a>
                                 </td>
-                            </tr> -->
-                            <!-- <tr>
+                            </tr> 
+                             <tr>
                                 <td>Peralatan</td>
                                 <td><a href="#" class="btn btn-warning">Daftar</a>
-                                    <a href="{{ route('bookingroom.create') }}" class="btn btn-danger">Edit</a>
+                                    <a href="#" class="btn btn-danger">Edit</a>
                                 </td>
-                            </tr> -->
-                           
+                            </tr> 
                                                    </tbody>
                         </table>
                        
