@@ -19,14 +19,14 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/try/try', 'TryController@index');
-Route::get('/try/try2', 'Try2Controller@index');
 Route::get('calendar', 'CalendarController@index');
-Route::get('/bookingroom/create', 'BookingRoomController@create');
 Route::post('/bookingroom', 'BookingRoomController@store');
+Route::get('/bookingroom/create', 'BookingRoomController@create');
 
 //route for files
 Route::resource('bookingroom', 'BookingRoomController');
 
 
 // route for AdminControllers
-
+Route::get('/admin/form', 'AdminController@index');
+Route::get('/admin/add', 'AdminController@create');

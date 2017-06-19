@@ -78,7 +78,7 @@
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
                     <li><a href="{{ url('/try/try') }}">try</a></li>
-                    <li><a href="{{ url('/try/try2') }}">try2</a></li>
+                    <li><a href="{{ url('/admin/form') }}">adminform</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
