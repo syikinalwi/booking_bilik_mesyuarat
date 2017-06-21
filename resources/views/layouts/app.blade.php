@@ -120,7 +120,8 @@
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
                     <li><a href="{{ url('/try/try') }}">try</a></li>
-                    <li><a href="{{ url('/admin/add') }}">adminform</a></li>
+                    <li><a href="{{ url('/admin/form') }}">adminform</a></li>
+                    <li><a href="{{ url('/admin/add') }}">adminadd</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

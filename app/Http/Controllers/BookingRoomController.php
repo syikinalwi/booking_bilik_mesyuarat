@@ -13,6 +13,7 @@ use App\drink;
 use App\meetingtitle;
 use App\bookingroom;
 use App\Http\Requests\CreatebookingroomRequest;
+// add carbon
 
 class BookingRoomController extends Controller
 {
@@ -54,7 +55,8 @@ class BookingRoomController extends Controller
         $bookingroom->stuff_list = $request->stuff_list;
         $bookingroom->food_name = $request->food_name;
         $bookingroom->drink_name = $request->drink_name;
-        $bookingroom->room = $request->room;
+        $bookingroom->title = $request->room;
+        $bookingroom->start = $request->room;
         $bookingroom->save();
     // slpas berjya simpan, set success msg
         

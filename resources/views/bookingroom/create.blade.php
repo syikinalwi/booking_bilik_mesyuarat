@@ -70,6 +70,7 @@
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
                     <li><a href="{{ url('/try/try') }}">try</a></li>
                     <li><a href="{{ url('/admin/form') }}">adminform</a></li>
+                    <li><a href="{{ url('/admin/add') }}">adminadd</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -137,10 +138,16 @@
 
 
                 <!-- select date -->
-                <!-- <div class="form-group">
+                <div class="form-group">
                     {!! Form::label('room', 'tarikh :'); !!}
-                     {!! Form::text('room', '', ['datepicker'=>'datepicker']); !!}
-                </div> -->
+                     {!! Form::date('room', '',['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('room', 'color :'); !!}
+                     {!! Form::color('room'); !!}
+                </div>
+
                 <!-- 
                 <p>Date: <input type="text" id="datepicker"><span class="glyphicon glyphicon-calendar"></span></p> -->
                  

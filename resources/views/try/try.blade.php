@@ -15,6 +15,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
+  <!-- color -->
+  <!--  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>  
+ -->
+
     <style>
         body {
             font-family: 'Arial';
@@ -33,17 +41,6 @@
             margin-right: 6px;
         }
     </style>
-
-     <script>
-  $( function() {
-    $( "#datepicker" ).datepicker({
-      showOn: "button",
-      buttonImage: "/image/calendar1.gif",
-      buttonImageOnly: true,
-      buttonText: "Select date"
-    });
-  } );
-     </script>
 
  
  
@@ -79,6 +76,7 @@
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
                     <li><a href="{{ url('/try/try') }}">try</a></li>
                     <li><a href="{{ url('/admin/form') }}">adminform</a></li>
+                    <li><a href="{{ url('/admin/add') }}">adminadd</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -144,13 +142,40 @@
 </ul>
  
   -->
+
+
+        <div class="container">
+        <!-- date -->
+
         <div class="col-md-7 col-md-offset-4">
-          <p>Date: <input type="text" id="datepicker"><span class="datepicker"></span></p>
- 
+          <p>Date: <input type="date" id=""><span class=""></span></p>
         </div>
 
+        <!-- color -->
+        <p>Color Picker: <div class="col-md-2">
+        <input class="form-control" type="color" id="color"/>
+        </div>
+        </p>
 
+        <!-- problem if we put in head -->
+             <script>
+                $( function() {
+                  $( "#datepicker" ).datepicker({
+                    showOn: "button",
+                    buttonImage: "/image/calendar1.gif",
+                    buttonImageOnly: true,
+                    buttonText: "Select date"
+                  });
+                } );
 
+                // $('#color').colorpicker({});
+             </script>
+     
+        <!-- // color -->
+          <!--   <script>
+                
+            </script>
+ -->
 
 </body>
 </html>

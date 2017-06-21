@@ -20,6 +20,11 @@ class AdminController extends Controller
         return view ('admin.add');
     }
 
+     public function event()
+    {
+        return view ('bookingrooms.event');
+    }
+
     
     public function store(Request $request)
     {

@@ -30,3 +30,4 @@ Route::resource('bookingroom', 'BookingRoomController');
 // route for AdminControllers
 Route::get('/admin/form', 'AdminController@index');
 Route::get('/admin/add', 'AdminController@create');
+Route::get('/bookingrooms/event', 'AdminController@event');
