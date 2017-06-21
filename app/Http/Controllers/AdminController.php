@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function create()
     {
-        return view ('admin.add');
+        return view ('admin.adddepartmentname', compact('admin.addmeetingroom','admin.addstuff'));
     }
 
      public function event()

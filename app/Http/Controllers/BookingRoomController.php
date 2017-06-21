@@ -51,13 +51,14 @@ class BookingRoomController extends Controller
     {
         $bookingroom = new bookingroom; 
         $bookingroom->department_name = $request->department_name;
+        $bookingroom->title = $request->room; //room_name->title
         $bookingroom->meetingtitle_name = $request->meetingtitle_name;
         $bookingroom->stuff_list = $request->stuff_list;
         $bookingroom->food_name = $request->food_name;
         $bookingroom->drink_name = $request->drink_name;
-        $bookingroom->title = $request->room;
         $bookingroom->start = $request->room;
         $bookingroom->save();
+        // $db name-> db column name = form name
     // slpas berjya simpan, set success msg
         
        

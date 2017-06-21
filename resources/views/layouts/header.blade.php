@@ -1,4 +1,4 @@
-@extends('')
+
 
     <header role="banner" id="zerro-header">
          <nav class="navbar navbar-default navbar-static-top">

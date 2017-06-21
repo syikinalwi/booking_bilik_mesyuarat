@@ -30,20 +30,20 @@
                             <tbody>
                             <tr>
                                 <td>Bahagian/Unit</td>
-                                <td><a href="#" class="btn btn-warning">Daftar</a>
+                                <td><a href="{{ url('/admin/adddepartmentname') }}" class="btn btn-warning">Daftar</a>
                                     <a href="#" class="btn btn-danger">Edit</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Bilik Mesyuarat</td>
-                                <td><a href="#" class="btn btn-warning">Daftar</a>
+                                <td><a href="{{ url('/admin/addmeetingroom') }}" class="btn btn-warning">Daftar</a>
                                     <a href="#" class="btn btn-danger">Edit</a>
                                 </td>
                             </tr> 
                              <tr>
                                 <td>Peralatan</td>
                                 <!-- { url('/admin/add') } -->
-                                <td><a href="{{ url('/admin/add') }}" class="btn btn-warning">Daftar</a>
+                                <td><a href="{{ url('/admin/addstuff') }}" class="btn btn-warning">Daftar</a>
                                     <a href="#" class="btn btn-danger">Edit</a>
                                 </td>
                             </tr> 

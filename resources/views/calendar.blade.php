@@ -10,11 +10,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-   <!--  <link href='fullcalendar.css' rel='stylesheet' />
-    <link href='scheduler.css' rel='stylesheet' />
-    <script src='moment.js'></script>
- -->
-
+   
 	{{ Html::style('/fullcalendar-3.4.0/fullcalendar.css') }}
 
 	{{ Html::script('/fullcalendar-3.4.0/lib/jquery.min.js') }}
@@ -29,56 +25,84 @@
              
             background-color: #f5f5dc; 
         }
-
-
-
-        /*.fullcalendar{
-
-             background-color: pink; 
-        }
-*/
         .fa-btn {
             margin-right: 6px;
         }
-
     </style>
 
+
     <script type="text/javascript">
-    $(document).ready(function() {
-    // month calendar
-    $('#calendar').fullCalendar({
-          theme: true,
-          editable: true,
-          eventLimit: true,
+        $(document).ready(function() {
+        // month calendar
+        $('#calendar').fullCalendar({
+              theme: true,
+              editable: true,
+              eventLimit: true,
 
-          displayEventTime : false,
-          header: {
-              left:'prev, next today',
-              center:'title',
-              right:'month, agendaWeek, agendaDay'
-         },
-         events: "{{ url('/bookingroom/events') }}",
-                })
-});
+              displayEventTime : false,
+              header: {
+                  left:'prev, next today',
+                  center:'title',
+                  right:'month, agendaWeek, agendaDay'
+             },
+             events: "{{ url('/bookingroom/events') }}",
+                    })
+        });
     </script>
-
-
 </head>
+
 <body id="app-layout">
     <header role="banner" id="zerro-header">
         <nav class="navbar navbar-warning navbar-static-top">
         <div class="container" >
            <div class="navbar-header">
-         <nav class="navbar navbar-warning navbar-static-top">
-         <nav class="navbar navbar-warning navbar-static-top">
-         <nav class="navbar navbar-warning navbar-static-top">
-               <!-- Branding Image -->
-                   <a class="navbar-brand" href="#"><img width="300" src="/image/bannerJKR.png" alt>            
-                    </a></nav>
-                    </nav></nav></div></div></nav>
+            <nav class="navbar navbar-warning navbar-static-top">
+            <nav class="navbar navbar-warning navbar-static-top">
+            <nav class="navbar navbar-warning navbar-static-top">
+                   <!-- Branding Image -->
+                        <a class="navbar-brand" href="#"><img width="300" src="/image/bannerJKR.png" alt>    
+                        </a>
+            </nav>
+            </nav>
+            </nav>
+           </div></div></nav>
             </div>
-      
+      <nav class="navbar navbar-default navbar-static-top">
 
+        <div class="container">
+            
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+
+                    <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
+                    <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
+                    <li><a href="{{ url('/try/try') }}">try</a></li>
+                    <li><a href="{{ url('/admin/form') }}">adminform</a></li>
+                    <li><a href="{{ url('/admin/add') }}">adminadd</a></li>
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">Masuk</a></li>
+                        <li><a href="{{ url('/register') }}">Daftar</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
+                </div>
+            </div>
+        </nav>
         
     </header>
 
