@@ -25,8 +25,13 @@ class CreatebookingroomRequest extends Request
     {
         return [
         'department_name'=>'required',
-        'room'=>'required',
-            //
+        'title'=>'required',
+        'start'=>'required',
+        'time'=>'required',
+        'stuff_list'=>'required',
+        'meetingtitle_name'=>'required',
+        'drink_name'=>'required',
+        'food_name'=>'required',
         ];
     }
 }

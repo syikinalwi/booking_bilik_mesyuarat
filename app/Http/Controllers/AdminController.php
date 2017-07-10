@@ -6,18 +6,29 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Admin;
+// use Carbon\Carbon;
 class AdminController extends Controller
 {
     public function index()
     {
-        //
 
        return view ('admin.form');
     }
 
     public function create()
     {
-        return view ('admin.adddepartmentname', compact('admin.addmeetingroom','admin.addstuff'));
+        
+        return view ('admin.adddepartmentname');
+    }
+
+     public function createmeetingroom()
+    {
+        return view ('admin.meetingroom');
+    }
+
+     public function createaddstuff()
+    {
+        return view ('admin.addstuff');
     }
 
      public function event()

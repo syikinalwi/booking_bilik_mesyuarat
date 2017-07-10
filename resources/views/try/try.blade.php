@@ -152,7 +152,7 @@
         </div>
 
         <!-- color -->
-        <p>Color Picker: <div class="col-md-2">
+        <p>Color Picker: <div class="col-md-1">
         <input class="form-control" type="color" id="color"/>
         </div>
         </p>

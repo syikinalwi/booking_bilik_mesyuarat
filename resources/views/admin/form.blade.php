@@ -36,7 +36,7 @@
                             </tr>
                             <tr>
                                 <td>Bilik Mesyuarat</td>
-                                <td><a href="{{ url('/admin/addmeetingroom') }}" class="btn btn-warning">Daftar</a>
+                                <td><a href="{{ url('/admin/meetingroom') }}" class="btn btn-warning">Daftar</a>
                                     <a href="#" class="btn btn-danger">Edit</a>
                                 </td>
                             </tr> 

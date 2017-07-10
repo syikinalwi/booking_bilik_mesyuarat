@@ -68,9 +68,8 @@
 
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
-                    <li><a href="{{ url('/try/try') }}">try</a></li>
                     <li><a href="{{ url('/admin/form') }}">adminform</a></li>
-                    <li><a href="{{ url('/admin/add') }}">adminadd</a></li>
+                   
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -96,6 +95,8 @@
         </nav>
 
 
+
+
 <div class="container-fluid">
 <div class="container">
     <div class="row">
@@ -109,13 +110,23 @@
 
             
                 <div class="panel-heading">
-        <div class="flex-center position-ref">Borang Tempahan Bilik</div></div>
-
+                    <div class="flex-center position-ref">Borang Tempahan Bilik</div></div>
+                        <!-- papar validation error -->
+                        @if($errors->all())
+                        <div class="alert alert-danger" role="alert">
+                        <p>Validation error.Please fix this error below: </p>
+                            <ul>
+                            @foreach ($errors->all() as $message)
+                            <li>{{ $message }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                        @endif
                 <div class="panel-body">
                      
                 <!-- tambah form kat sini -->
 
-                {!! Form::open(['route' => 'bookingroom.store', 'bookingroom'=>true]) !!}
+                {!! Form::open(['route' => 'bookingroom.store']) !!}
 
                 <div>
                     {!! Form::label('department_name', 'Bahagian/Unit:'); !!}
@@ -124,32 +135,20 @@
 
 
                  <div>
-                    {!! Form::label('room_name', 'Bilik Mesyuarat:'); !!}
-                    {!! Form::select('room_name', $rooms , null, ['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
+                    {!! Form::label('title', 'Bilik Mesyuarat:'); !!}
+                    {!! Form::select('title', $rooms , null, ['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
                 </div>
-
-
-                <!-- <div class="form-group">
-                    {!! Form::label('room', 'Bilik Mesyuarat:'); !!}
-                    <ul>{!! Form::radio('room', 'bilikgerakan', false); !!} Bilik Gerakan</ul>
-                    <ul>{!! Form::radio('room', 'bilikmesyuaratA', false); !!} Bilik Mesyuarat A</ul>
-                    <ul> {!! Form::radio('room', 'bilikmesyuaratC', false); !!} Bilik Mesyuarat C</ul>
-                </div> -->
-
 
                 <!-- select date -->
                 <div class="form-group">
-                    {!! Form::label('room', 'tarikh :'); !!}
-                     {!! Form::date('room', '',['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
+                    {!! Form::label('start', 'tarikh :'); !!}
+                     {!! Form::date('start', '',['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
                 </div>
-
-                <div class="form-group">
-                    {!! Form::label('room', 'color :'); !!}
-                     {!! Form::color('room'); !!}
+                <!-- time field -->
+                <div class="form-group {{ $errors-> has('time') ? 'has-error' : false }}">
+                    {!! Form::label('time', 'Masa:'); !!}
+                    {!! Form::time('time', '', ['class'=>'form-control']); !!}
                 </div>
-
-                <!-- 
-                <p>Date: <input type="text" id="datepicker"><span class="glyphicon glyphicon-calendar"></span></p> -->
                  
                 <div class="form-group">
 
@@ -192,9 +191,51 @@
 
 
 <script>
+// $('#calendar').fullCalendar({
+//     events: [
+//         {
+//             title  : 'event1',
+//             start  : '2010-01-01'
+//         },
+//         {
+//             title  : 'event2',
+//             start  : '2010-01-05',
+//             end    : '2010-01-07'
+//         },
+//         {
+//             title  : 'event3',
+//             start  : '2010-01-09T12:30:00',
+//             allDay : false // will make the time show
+//         }
+//     ]
+// });
     $(document).ready(function() {
         $('#calendar').fullCalendar({
+            defaultView: 'agendaWeek',
+            editable: true,
+            selectable: true,
+            allDaySlot: false,
+           
+             header:{
+                left: 'prev,next today',
+                center: 'title',
+                right: 'agendaWeek,agendaDay'
+            },
 
+            events:"{{ url('/bookingrooms/getallevents') }}",
+            eventDrop: function(event, delta, revertFunc) {
+                var ajax_url = '/bookingroom/updateevents/' + event.id + event.start.format();
+                alert(event.title + " was dropped on " + event.start.format() + " " + event.id);
+
+                if (!confirm("Are you sure about this change?")) {
+                    revertFunc();
+                }
+            },
+
+            
+
+
+          
         })
     });
 </script>
@@ -202,7 +243,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
+
 </body>
 </html>
-
-

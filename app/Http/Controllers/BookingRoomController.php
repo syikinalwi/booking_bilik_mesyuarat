@@ -13,19 +13,15 @@ use App\drink;
 use App\meetingtitle;
 use App\bookingroom;
 use App\Http\Requests\CreatebookingroomRequest;
-// add carbon
+use Carbon\Carbon;
+
 
 class BookingRoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $departments = Department::pluck('department_name', 'id');
-        $rooms = Department::pluck('room_name', 'id');
+        $rooms = Department::pluck('title', 'id');
       
 
 
@@ -37,27 +33,30 @@ class BookingRoomController extends Controller
     {
         //namedb=model.php::pluck from AttributeDb
         $departments= Department::pluck('department_name', 'id');
-        $rooms= room::pluck('room_name', 'id');
+        $rooms= room::pluck('title', 'id');
         $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
         $foods = food::pluck('food_name', 'id');
         $drinks = drink::pluck('drink_name', 'id');
-      
-
+        
          return view ('bookingroom.create' , compact('departments','rooms', 'meetingtitles', 'foods', 'drinks'));
     }
 
     
     public function store(CreatebookingroomRequest $request)
     {
+        // dd('asas');
         $bookingroom = new bookingroom; 
-        $bookingroom->department_name = $request->department_name;
-        $bookingroom->title = $request->room; //room_name->title
-        $bookingroom->meetingtitle_name = $request->meetingtitle_name;
-        $bookingroom->stuff_list = $request->stuff_list;
-        $bookingroom->food_name = $request->food_name;
-        $bookingroom->drink_name = $request->drink_name;
-        $bookingroom->start = $request->room;
+        $bookingroom->department_name = $request->input('department_name');
+        $bookingroom->title = $request->input('title'); //title->title
+        $bookingroom->start = $request->input('start'); 
+        $bookingroom->time = $request->input('time'); 
+        $bookingroom->meetingtitle_name = $request->input('meetingtitle_name');
+        $bookingroom->stuff_list = $request->input('stuff_list');
+        $bookingroom->food_name = $request->input('food_name');
+        $bookingroom->drink_name = $request->input('drink_name');
+        // $bookingroom->start = Carbon::parse($request->input('startdate'))->format('d-m-Y 00:00:00');
         $bookingroom->save();
+        
         // $db name-> db column name = form name
     // slpas berjya simpan, set success msg
         
@@ -84,12 +83,31 @@ class BookingRoomController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
-
-    
+    } 
     
     public function destroy($id)
     {
         //
     }
+    public function getevents()
+    {
+        return view ('bookingroom.events');
+    }
+
+    public function getAllEvents() {
+        $events=bookingroom::all();
+
+        return json_encode($events);
+    } //end func
+
+     public function updateevents($event_id, $updatedevent) {
+     // dd($event_id, $updatedevent);
+
+       echo $event_id;
+        $areas = bookingroom::where('id', '=', $event_id)->update(array ('start' => $updatedevent));
+
+        return redirect('/admin/form');
+        // return json_encode($events);
+    } //end func
+
 }

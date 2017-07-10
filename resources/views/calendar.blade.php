@@ -31,24 +31,35 @@
     </style>
 
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-        // month calendar
+   <script>
+    $(document).ready(function() {
         $('#calendar').fullCalendar({
-              theme: true,
-              editable: true,
-              eventLimit: true,
+              defaultView: 'agendaWeek',
+            editable: true,
+            selectable: true,
+            allDaySlot: false,
+           
+             header:{
+                left: 'prev,next today',
+                center: 'title',
+                right: 'agendaWeek,agendaDay'
+            },
+          
+            events:"{{ url('/bookingroom/events') }}",
 
-              displayEventTime : false,
-              header: {
-                  left:'prev, next today',
-                  center:'title',
-                  right:'month, agendaWeek, agendaDay'
-             },
-             events: "{{ url('/bookingroom/events') }}",
-                    })
-        });
-    </script>
+             // eventClick:  function(event, jsEvent, view) {
+             //    endtime = $.fullCalendar.moment(event.end).format('h:mm');
+             //    starttime = $.fullCalendar.moment(event.start).format('dddd, MMMM Do YYYY, h:mm');
+             //    var mywhen = starttime + ' - ' + endtime;
+             //    $('#modalTitle').html(event.title);
+             //    $('#modalWhen').text(mywhen);
+             //    $('#eventID').val(event.id);
+             //    $('#calendarModal').modal();
+            // },
+        })
+    });
+</script>
+
 </head>
 
 <body id="app-layout">
@@ -77,9 +88,8 @@
 
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
-                    <li><a href="{{ url('/try/try') }}">try</a></li>
                     <li><a href="{{ url('/admin/form') }}">adminform</a></li>
-                    <li><a href="{{ url('/admin/add') }}">adminadd</a></li>
+                  
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -106,135 +116,18 @@
         
     </header>
 
-
-         <!-- <nav class="navbar navbar-default navbar-static-top">
-
-        <div class="container">
-            
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-          -->   
-                <!-- Left Side Of Navbar -->
-               <!--  <ul class="nav navbar-nav">
-
-                    <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
-                    <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
-                    <li><a href="{{ url('/try/try') }}">try</a></li>
-                    <li><a href="{{ url('/admin/form') }}">adminform</a></li>
-                    <li><a href="{{ url('/admin/add') }}">adminadd</a></li>
-                </ul>
- -->
-                <!-- Right Side Of Navbar -->
-               <!--  <ul class="nav navbar-nav navbar-right">
-                 -->    <!-- Authentication Links -->
-                   <!--  @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Masuk</a></li>
-                        <li><a href="{{ url('/register') }}">Daftar</a></li>
-                    @else -->
-                        <!-- <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li> -->
-                    <!-- @endif -->
-                <!-- </ul>
-                </div>
-            </div>
-        </nav> -->
-
-  
- 
-
-
-
-   <!--  
-    // week calendar
-    // $('#calendar').fullCalendar({
-    // defaultDate: '2014-11-10',
-    // defaultView: 'agendaWeek',
-    // events: [
-    //     {
-    //         start: '2014-11-10T10:00:00',
-    //         end: '2014-11-10T16:00:00',
-    //         rendering: 'background'
-    //     }
-    // ]
-    // //  color: 'yellow',   // an option!
-    // // textColor: 'black' // an option!
-    //     });
-    // // day calendar
-    // $('#calendar').fullCalendar({
-    // defaultView: 'agendaDay',
-    // events: [
-    //     // events go here
-    // ],
-    // resources: [
-    //     { id: 'a', title: 'Room A' },
-    //     { id: 'b', title: 'Room B' },
-    //     { id: 'c', title: 'Room C' },
-    //     { id: 'd', title: 'Room D' }
-    // ]
-    //     }); -->
-
-    
-    <div class="container">
+<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
-            <div id='calendar'></div>
-        </div>
-    </div>
-    </div>
-   
-<!--    <div class="container">
-    <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
+        <div class="col-xs-12">
             <div class="panel panel-success">
-            
-                <div class="fc-toolbar fc-header-toolbar">
-                    <div class="fc-left"
-                    <div class="fc-button-group">
-                    <button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left">
-                        <span class="fc-icon fc-icon-left-single-arrow"></span>
-                    </button>
-                    <button type="button" class="fc-next-button fc-state-default fc-corner-right">
-                        <span class="fc-icon fc-icon-right-single-arrow"></span>
-                    </button>
-                    </div>
-                    <div class="fc-right">
-                        <div class="fc-button-group">
-
-                            <button type="button" class="fc-today-button fc-button fc-state-default">today</button>
-
-                            <button type="button" class="fc-month-button fc-button fc-state-default fc-corner-left fc-state-active">month</button>
-
-                            <button type="button" class="fc-agendaWeek-button fc-button fc-state-default">week</button>
-
-                            <button type="button" class="fc-agendaday-button fc-button fc-state-default fc-corner-right">day</button>
-                        </div>
-
-                        <div class="fc-center">
-                            <h2></h2>
-                        </div>
-
-                        <div class="fc-clear"></div>
-                    </div>
-                    </div>
-                    <div id='calendar' class="fc fc-unthemed fc-ltr">
-                </div>
-
-            </div>
+            <div id='calendar'></div>
         </div></div>
-    </div> -->
-    
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src='jquery.js'></script>
-    <script src='fullcalendar.js'></script>
-    <script src='scheduler.js'></script>
-    <script type='text/javascript'></script> -->
-    
+    </div>
+</div>
+</div>
+
+ 
 </body>
 </html>
 

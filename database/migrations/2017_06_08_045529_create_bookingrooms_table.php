@@ -17,6 +17,7 @@ class CreateBookingroomsTable extends Migration
             $table->string('department_name', 50);
             $table->enum('room', ['bilikgerakan', 'bilikmesyuaratA', 'bilikmesyuaratC']);//radiobtn
             $table->string('stuff_list', 50);//checkbox
+            $table->date('start');
             $table->string('meetingtitle_name', 50);
             $table->text('food_name', 50);
             $table->text('drink_name', 50);

@@ -17,19 +17,22 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-Route::get('/try/try', 'TryController@index');
+Route::get('/home', 'HomeController@index');	
+// Route::get('/try/try', 'TryController@index');
 Route::get('calendar', 'CalendarController@index');
-Route::post('/bookingroom', 'BookingRoomController@store');
-Route::get('/bookingroom/create', 'BookingRoomController@create');
+// Route::post('/bookingroom', 'BookingRoomController@store');
+//Route::get('/bookingroom/create', 'BookingRoomController@create');
 
 //route for files
 Route::resource('bookingroom', 'BookingRoomController');
+Route::get('/bookingrooms/getallevents', 'BookingRoomController@getAllEvents');
+Route::get('/bookingroom/updateevents/{event_id}{updatedevent}', 'BookingRoomController@updateevents');
+// Route::get('bookingroom/add_events', 'BookingRoomController@getevents');
 
 
 // route for AdminControllers
 Route::get('/admin/form', 'AdminController@index');
 Route::get('/admin/adddepartmentname', 'AdminController@create');
-Route::get('/admin/addmeetingroom', 'AdminController@create');
-Route::get('/admin/addstuff', 'AdminController@create');
-Route::get('/bookingrooms/event', 'AdminController@event');
+Route::get('/admin/meetingroom', 'AdminController@createmeetingroom');
+Route::get('/admin/addstuff', 'AdminController@createaddstuff');
+// Route::get('/bookingrooms/event', 'BookingRoomController@getevents');

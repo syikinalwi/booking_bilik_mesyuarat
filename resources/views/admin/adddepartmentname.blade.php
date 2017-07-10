@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Tambah Nama Bilik</div>
 
                 <div class="panel-body">
                    <div>
@@ -18,6 +18,11 @@
                     {!! Form::label('room', 'Status:'); !!}
                     {!! Form::radio('room', 'Aktif', false); !!}Aktif
                     {!! Form::radio('room', 'TakAktif', false); !!}Tak Aktif
+                </div>
+
+                 <div class="form-group">
+                    {!! Form::label('room', 'color :'); !!}
+                     {!! Form::color('room'); !!}
                 </div>
 
                  <!-- button submit -->
