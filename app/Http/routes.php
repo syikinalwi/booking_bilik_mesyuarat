@@ -26,12 +26,13 @@ Route::get('calendar', 'CalendarController@index');
 //route for files
 Route::resource('bookingroom', 'BookingRoomController');
 Route::get('/bookingrooms/getallevents', 'BookingRoomController@getAllEvents');
-Route::get('/bookingroom/updateevents/{event_id}{updatedevent}', 'BookingRoomController@updateevents');
+Route::post('/bookingroom/updateevents/{event_id}', 'BookingRoomController@updateevents');
 // Route::get('bookingroom/add_events', 'BookingRoomController@getevents');
 
 
 // route for AdminControllers
 Route::get('/admin/form', 'AdminController@index');
+ Route::post('/admin/meetingroom', 'AdminController@store');
 Route::get('/admin/adddepartmentname', 'AdminController@create');
 Route::get('/admin/meetingroom', 'AdminController@createmeetingroom');
 Route::get('/admin/addstuff', 'AdminController@createaddstuff');

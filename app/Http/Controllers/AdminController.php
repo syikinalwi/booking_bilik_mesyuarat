@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Admin;
+use App\Department;
+use App\room;
 // use Carbon\Carbon;
 class AdminController extends Controller
 {
@@ -37,11 +39,15 @@ class AdminController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(CreateAdminRequest $request)
     {
         //
+        $admin = new Admin;
+        $admin ->department_name = $request->input('department_name');
+        $admin ->room = $request->input('room');
+        $admin->save();
     }
-
+ 
     public function show($id)
     {
         //

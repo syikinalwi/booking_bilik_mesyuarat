@@ -65,11 +65,12 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-
+                    
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
-                    <li><a href="{{ url('/admin/form') }}">adminform</a></li>
                    
+                    <li><a href="{{ url('/admin/form') }}">adminform</a></li>
+                    
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -147,7 +148,7 @@
                 <!-- time field -->
                 <div class="form-group {{ $errors-> has('time') ? 'has-error' : false }}">
                     {!! Form::label('time', 'Masa:'); !!}
-                    {!! Form::time('time', '', ['class'=>'form-control']); !!}
+                    {!! Form::time('time', $currtime, ['class'=>'form-control']); !!}
                 </div>
                  
                 <div class="form-group">
@@ -188,32 +189,15 @@
 </div>
   </div>
 
-
-
 <script>
-// $('#calendar').fullCalendar({
-//     events: [
-//         {
-//             title  : 'event1',
-//             start  : '2010-01-01'
-//         },
-//         {
-//             title  : 'event2',
-//             start  : '2010-01-05',
-//             end    : '2010-01-07'
-//         },
-//         {
-//             title  : 'event3',
-//             start  : '2010-01-09T12:30:00',
-//             allDay : false // will make the time show
-//         }
-//     ]
-// });
+
     $(document).ready(function() {
+
         $('#calendar').fullCalendar({
             defaultView: 'agendaWeek',
             editable: true,
             selectable: true,
+            // start:  '2010-01-01T14:30:00',
             allDaySlot: false,
            
              header:{
@@ -224,18 +208,31 @@
 
             events:"{{ url('/bookingrooms/getallevents') }}",
             eventDrop: function(event, delta, revertFunc) {
-                var ajax_url = '/bookingroom/updateevents/' + event.id + event.start.format();
+                var ajax_url = '/bookingroom/updateevents/' + event.id;
                 alert(event.title + " was dropped on " + event.start.format() + " " + event.id);
+                var event_id=event.id;
+                var event_date=event.start.format();
+                var token='{{csrf_token()}}';
+                var data = 'date='+ event_date+'&_token='+token;
+                
+                console.log(token);
+                console.log(token);
 
                 if (!confirm("Are you sure about this change?")) {
                     revertFunc();
                 }
-            },
-
-            
-
-
-          
+                else {
+                   $.ajax({
+                     type: "POST",
+                     url: ajax_url,
+                     data: data
+                     // success: success,
+                     // dataType: dataType
+                   });
+                }
+            }
+           // timeFormat: 'H(:mm)' // uppercase H for 24-hour clock
+        
         })
     });
 </script>

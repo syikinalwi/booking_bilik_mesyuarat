@@ -86,10 +86,13 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
 
+                    @if (Auth::User())
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
+                    @else
                     <li><a href="{{ url('/admin/form') }}">adminform</a></li>
-                  
+                    @endif
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->

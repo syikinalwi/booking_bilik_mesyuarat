@@ -31,14 +31,15 @@ class BookingRoomController extends Controller
    
     public function create()
     {
-        //namedb=model.php::pluck from AttributeDb
+        //dbname=model.php::pluck from AttributeDb
         $departments= Department::pluck('department_name', 'id');
-        $rooms= room::pluck('title', 'id');
+        $rooms= room::where('status', '=', 'aktif')->pluck('title', 'id');
         $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
         $foods = food::pluck('food_name', 'id');
         $drinks = drink::pluck('drink_name', 'id');
-        
-         return view ('bookingroom.create' , compact('departments','rooms', 'meetingtitles', 'foods', 'drinks'));
+        $currtime = date('H:i');
+
+         return view ('bookingroom.create' , compact('departments','rooms', 'meetingtitles', 'foods', 'drinks','currtime'));
     }
 
     
@@ -48,16 +49,18 @@ class BookingRoomController extends Controller
         $bookingroom = new bookingroom; 
         $bookingroom->department_name = $request->input('department_name');
         $bookingroom->title = $request->input('title'); //title->title
-        $bookingroom->start = $request->input('start'); 
+        // $bookingroom->start = $request->input('start'); 
         $bookingroom->time = $request->input('time'); 
         $bookingroom->meetingtitle_name = $request->input('meetingtitle_name');
         $bookingroom->stuff_list = $request->input('stuff_list');
         $bookingroom->food_name = $request->input('food_name');
         $bookingroom->drink_name = $request->input('drink_name');
+        $dateevent = $request->input('start').' '.$request->input('time');
+        $bookingroom->start = $dateevent;
         // $bookingroom->start = Carbon::parse($request->input('startdate'))->format('d-m-Y 00:00:00');
         $bookingroom->save();
         
-        // $db name-> db column name = form name
+    // $db name-> db column name = form name
     // slpas berjya simpan, set success msg
         
        
@@ -97,16 +100,24 @@ class BookingRoomController extends Controller
     public function getAllEvents() {
         $events=bookingroom::all();
 
+
         return json_encode($events);
     } //end func
 
-     public function updateevents($event_id, $updatedevent) {
+    public function updateevents(Request $request, $event_id) {
      // dd($event_id, $updatedevent);
 
-       echo $event_id;
-        $areas = bookingroom::where('id', '=', $event_id)->update(array ('start' => $updatedevent));
+        $updatedevent = $request->date;
+        // dd($updatedevent);
+        $updatedevent=explode('T', $updatedevent);
+        $eventstart = $updatedevent[0];
+        $eventtime = $updatedevent[1];
+        $eventdatetime=$eventstart.' '.$eventtime;
 
-        return redirect('/admin/form');
+        
+        $areas = bookingroom::where('id', '=', $event_id)->update(array ('start' => $eventdatetime, 'time'=>$eventtime));
+
+        //return redirect('/admin/form');
         // return json_encode($events);
     } //end func
 

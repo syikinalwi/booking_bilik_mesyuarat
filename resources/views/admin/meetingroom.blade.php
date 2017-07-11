@@ -8,7 +8,11 @@
                 <div class="panel-heading">Tambah Nama Bilik</div>
 
                 <div class="panel-body">
-                   <div>
+
+                <!-- tambah form kat sini -->
+<!-- having error problem -->
+                {!! Form::open(['route' => 'admin.store']) !!} 
+                <div>
                     {!! Form::label('title', 'Nama Bilik:'); !!}
                     <!-- whatever department name inserted,needs to add it into the dropdown list which user can viewed-->
                     {!! Form::text('title', '', ['class'=>'form-control']); !!}
@@ -25,7 +29,8 @@
                     <button type="submit" class="btn btn-success">Tambah</button>
                     <a href="{{ url('/admin/form') }}" class="btn btn-danger">Batal</a>
                 </div>
-
+                 {!! Form::close() !!}
+            <!-- tutupform kat sini -->
             </div>
         </div>
     </div>
