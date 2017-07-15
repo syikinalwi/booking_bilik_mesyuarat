@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class CreateAdminRequest extends Request
+class CreateDepartmentNameRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class CreateAdminRequest extends Request
     public function rules()
     {
         return [
-            'title'=>'required',
+            'department_name'=>'required',
             'status'=>'required',
-            'color'=>'required',
+            
         ];
     }
 }

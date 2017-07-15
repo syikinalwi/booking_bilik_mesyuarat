@@ -12,20 +12,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
    
+    <!-- JavaScripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    {{ Html::style('/fullcalendar-3.4.0/fullcalendar.css') }}
 
-
-
-    <!-- datepicker -->
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      <link rel="stylesheet" href="/resources/demos/style.css">
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
      
 
     <style>
@@ -37,7 +33,6 @@
                 margin: 0 auto;
                 background-color: #f5f5dc; 
         }
-
     
         .fa-btn {
             margin-right: 6px;
@@ -45,23 +40,19 @@
          .full-height {
                 height: 100vh;
             }
-
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
             }
-
             .position-ref {
                 position: relative;
             }
-
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
-
             .links > a {
                 color: #000000;
                 padding: 0 25px;
@@ -71,24 +62,12 @@
                 text-decoration: none;
               /*  text-transform: uppercase;*/
             }
-
-
             .m-b-md {
                 margin-bottom: 30px;
             }
     </style>
 
-    <!-- datepicker script -->
-    <script>
-    $( function() {
-    $( "#datepicker" ).datepicker({
-      // showOn: "button",
-      // buttonImage: "images/calendar.gif",
-      // buttonImageOnly: true,
-      // buttonText: "Select date"
-        });
-      });
-    </script>
+   
 
 </head>
 <body id="app-layout">
@@ -116,11 +95,15 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+
+                <!-- create condition for admin or user login -->
                     @if (Auth::User())
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
+                    <li><a href="{{ url('/admin/form') }}">Borang Tempahan Admin</a></li>
                     @else
-                    <li><a href="{{ url('/admin/form') }}">adminform</a></li>
+                    <li><a href="#">Halaman Utama</a></li>
+                    <li><a href="#">Tempah Bilik</a></li>
                     @endif
                    
                 </ul>
@@ -148,9 +131,6 @@
         </nav>
     @yield('content')
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    
 </body>
 </html>

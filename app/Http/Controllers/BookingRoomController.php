@@ -14,6 +14,7 @@ use App\meetingtitle;
 use App\bookingroom;
 use App\Http\Requests\CreatebookingroomRequest;
 use Carbon\Carbon;
+use Alert;
 
 
 class BookingRoomController extends Controller
@@ -22,10 +23,11 @@ class BookingRoomController extends Controller
     {
         $departments = Department::pluck('department_name', 'id');
         $rooms = Department::pluck('title', 'id');
+        $stuffs = Department::pluck('stuff_name', 'id');
       
 
 
-       return view ('bookingroom.create', compact ('departments', 'rooms'));
+       return view ('bookingroom.create', compact ('departments', 'rooms', 'stuffs'));
     }
 
    
@@ -34,12 +36,13 @@ class BookingRoomController extends Controller
         //dbname=model.php::pluck from AttributeDb
         $departments= Department::pluck('department_name', 'id');
         $rooms= room::where('status', '=', 'aktif')->pluck('title', 'id');
+        $stuffs= stuff::where('status', '=', 'aktif')->pluck('stuff_name', 'id');
         $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
         $foods = food::pluck('food_name', 'id');
         $drinks = drink::pluck('drink_name', 'id');
         $currtime = date('H:i');
 
-         return view ('bookingroom.create' , compact('departments','rooms', 'meetingtitles', 'foods', 'drinks','currtime'));
+         return view ('bookingroom.create' , compact('departments','rooms', 'meetingtitles', 'foods', 'drinks','currtime', 'stuffs'));
     }
 
     
@@ -59,12 +62,10 @@ class BookingRoomController extends Controller
         $bookingroom->start = $dateevent;
         // $bookingroom->start = Carbon::parse($request->input('startdate'))->format('d-m-Y 00:00:00');
         $bookingroom->save();
-        
-    // $db name-> db column name = form name
-    // slpas berjya simpan, set success msg
-        
-       
 
+        //  // flash('Product successfully created')->overlay();
+        // alert()->success('Product successfully created.', 'Good Work!')->autoclose(3000);
+            flash('Successfully created!');
         // kembali ke bookingroom.index
         return redirect()->route('bookingroom.create');
     }

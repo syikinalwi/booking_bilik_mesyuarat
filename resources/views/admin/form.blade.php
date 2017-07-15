@@ -42,7 +42,6 @@
                             </tr> 
                              <tr>
                                 <td>Peralatan</td>
-                                <!-- { url('/admin/add') } -->
                                 <td><a href="{{ url('/admin/addstuff') }}" class="btn btn-warning">Daftar</a>
                                     <a href="#" class="btn btn-danger">Edit</a>
                                 </td>
