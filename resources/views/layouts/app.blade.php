@@ -95,20 +95,24 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-
-                <!-- create condition for admin or user login -->
-                    @if (Auth::User())
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
-                    <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
+                
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bilik Mesyuarat <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik Mesyuarat</a></li>
+                        </ul>
+                    </li>
+                     <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/admin/form') }}">Borang Tempahan Admin</a></li>
+                            <li><a href="{{ url('/admin/registeradmin') }}">Daftar Admin Baru</a></li>
+                        </ul>
+                    </li>
+                    </ul>
 
-                    <li><a href="{{ url('/admin/form') }}">Borang Tempahan Admin</a></li>
-                    <li><a href="{{ url('/admin/registeradmin') }}">Borang Tempahan Admin</a></li>
-                    @else
-                    <li><a href="#">Halaman Utama</a></li>
-                    <li><a href="#">Tempah Bilik</a></li>
-                    @endif
-                   
-                </ul>
+               
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

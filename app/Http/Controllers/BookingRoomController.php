@@ -117,9 +117,6 @@ class BookingRoomController extends Controller
 
         
         $areas = bookingroom::where('id', '=', $event_id)->update(array ('start' => $eventdatetime, 'time'=>$eventtime));
-
-        //return redirect('/admin/form');
-        // return json_encode($events);
-    } //end func
+    } 
 
 }
