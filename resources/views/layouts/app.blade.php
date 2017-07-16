@@ -100,7 +100,9 @@
                     @if (Auth::User())
                     <li><a href="{{ url('/calendar') }}">Halaman Utama</a></li>
                     <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik</a></li>
+
                     <li><a href="{{ url('/admin/form') }}">Borang Tempahan Admin</a></li>
+                    <li><a href="{{ url('/admin/registeradmin') }}">Borang Tempahan Admin</a></li>
                     @else
                     <li><a href="#">Halaman Utama</a></li>
                     <li><a href="#">Tempah Bilik</a></li>

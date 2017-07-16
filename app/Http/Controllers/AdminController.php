@@ -94,6 +94,10 @@ class AdminController extends Controller
     // store registered admin
     // public function RegisterAdmin(CreaterRegisterAdminRequest $request)
     // {
+         // 'name' => $data['name'],
+         //    'email' => $data['email'],
+         //    'password' => bcrypt($data['password']),
+         //    'position' => $data['position'],
 
     // } 
     
