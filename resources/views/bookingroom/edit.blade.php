@@ -6,18 +6,13 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-xs-7">
-            <div class="panel panel-success">
-            <div id='calendar'></div>
-            </div>
-        </div>
 
-        <div class="col-xs-5">
+        <div class="col-xs-7">
             <div class="panel panel-success">
 
             
                 <div class="panel-heading">
-                    <div class="flex-center position-ref">Borang Tempahan Bilik</div></div>
+                    <div class="flex-center position-ref">Edit Borang Tempahan Bilik</div></div>
                         <!-- papar validation error -->
                         @if($errors->all())
                         <div class="alert alert-danger" role="alert">
@@ -85,8 +80,8 @@
 
                 <!-- button submit -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Hantar Tempahan Bilik</button>
-                    <a href="{{ route('bookingroom.index') }}" class="btn btn-danger">Batal</a>
+                    <button type="submit" class="btn btn-success">Kemaskini Tempahan</button>
+                    <a href="{{ route('bookingroom.index') }}" class="btn btn-danger">Kembali</a>
                 </div>
 
             {!! Form::close() !!}
@@ -95,63 +90,24 @@
                 </div>
             </div>
         </div>
+
+<!-- button action form-->
+        <div class="col-xs-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <a href="#" class="btn btn-default">Print Borang Tempahan</a>
+                </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">        
+                    <a href="#" class="btn btn-default">Padam Borang Tempahan</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
   </div>
 
 
-
-{{ Html::script('fullcalendar-3.4.0/lib/jquery.min.js') }}
-
-{{ Html::script('fullcalendar-3.4.0/lib/moment.min.js') }}
-
-{{ Html::script('fullcalendar-3.4.0/fullcalendar.js') }}
-
-<script>
-
-    $(document).ready(function() {
-
-        $('#calendar').fullCalendar({
-            defaultView: 'agendaWeek',
-            editable: true,
-            selectable: true,
-            // start:  '2010-01-01T14:30:00',
-            allDaySlot: false,
-           
-             header:{
-                left: 'prev,next today',
-                center: 'title',
-                right: 'agendaWeek,agendaDay'
-            },
-
-            events:"{{ url('/bookingrooms/getallevents') }}",
-            eventDrop: function(event, delta, revertFunc) {
-                var ajax_url = '/bookingroom/updateevents/' + event.id;
-                alert(event.title + " was dropped on " + event.start.format() + " " + event.id);
-                var event_id=event.id;
-                var event_date=event.start.format();
-                var token='{{csrf_token()}}';
-                var data = 'date='+ event_date+'&_token='+token;
-                
-                console.log(token);
-                console.log(token);
-
-                if (!confirm("Are you sure about this change?")) {
-                    revertFunc();
-                }
-                else {
-                   $.ajax({
-                     type: "POST",
-                     url: ajax_url,
-                     data: data
-                     // success: success,
-                     // dataType: dataType
-                   });
-                }
-            }
-           // timeFormat: 'H(:mm)' // uppercase H for 24-hour clock
-        
-        })
-    });
-</script>
 @endsection

@@ -21,13 +21,17 @@ class BookingRoomController extends Controller
 {
     public function index(Request $request)
     {
-        $departments = Department::pluck('department_name', 'id');
-        $rooms = Department::pluck('title', 'id');
-        $stuffs = Department::pluck('stuff_name', 'id');
-      
+       
+        //dbname=model.php::pluck from AttributeDb
+        $departments= Department::pluck('department_name', 'id');
+        $rooms= room::where('status', '=', 'aktif')->pluck('title', 'title');
+        $stuffs= stuff::where('status', '=', 'aktif')->pluck('stuff_name', 'id');
+        $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
+        $foods = food::pluck('food_name', 'id');
+        $drinks = drink::pluck('drink_name', 'id');
+        $currtime = date('H:i');
 
-
-       return view ('bookingroom.create', compact ('departments', 'rooms', 'stuffs'));
+         return view ('bookingroom.create' , compact('departments','rooms', 'meetingtitles', 'foods', 'drinks','currtime', 'stuffs'));
     }
 
    
@@ -35,7 +39,7 @@ class BookingRoomController extends Controller
     {
         //dbname=model.php::pluck from AttributeDb
         $departments= Department::pluck('department_name', 'id');
-        $rooms= room::where('status', '=', 'aktif')->pluck('title', 'id');
+        $rooms= room::where('status', '=', 'aktif')->pluck('title', 'title');
         $stuffs= stuff::where('status', '=', 'aktif')->pluck('stuff_name', 'id');
         $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
         $foods = food::pluck('food_name', 'id');
@@ -80,7 +84,15 @@ class BookingRoomController extends Controller
 
     public function edit($id)
     {
-        //
+        $bookingrooms = bookingroom::find($id);
+        $departments= Department::pluck('department_name', 'id');
+        $rooms= room::where('status', '=', 'aktif')->pluck('title', 'title');
+        $stuffs= stuff::where('status', '=', 'aktif')->pluck('stuff_name', 'id');
+        $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
+        $foods = food::pluck('food_name', 'id');
+        $drinks = drink::pluck('drink_name', 'id');
+        $currtime = date('H:i');
+        return view('bookingroom.edit', compact('departments','rooms', 'meetingtitles', 'foods', 'drinks','currtime', 'stuffs'));
     }
 
    
