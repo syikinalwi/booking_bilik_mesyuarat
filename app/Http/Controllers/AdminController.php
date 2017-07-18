@@ -11,10 +11,12 @@ use App\room;
 // use App\bookingroom;
 use App\stuff;
 // use Carbon\Carbon;
+use App\User;
 use Session;
 use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\CreateDepartmentNameRequest;
 use App\Http\Requests\CreateStuffListRequest;
+use App\Http\Requests\CreateRegisterAdminRequest;
 
 class AdminController extends Controller
 {
@@ -92,14 +94,21 @@ class AdminController extends Controller
     }
 
     // store registered admin
-    // public function RegisterAdmin(CreaterRegisterAdminRequest $request)
-    // {
-         // 'name' => $data['name'],
-         //    'email' => $data['email'],
-         //    'password' => bcrypt($data['password']),
-         //    'position' => $data['position'],
+    public function RegisterAdmin(CreateRegisterAdminRequest $request)
+    {
 
-    // } 
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->position = $request->input('position');
+        $user->save();
+
+
+        return view('admin.form');
+
+
+    } 
     
     public function show($id)
     {

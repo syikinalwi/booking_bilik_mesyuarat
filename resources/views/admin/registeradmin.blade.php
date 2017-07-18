@@ -8,7 +8,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Daftar Admin Baru</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/registeradmin ') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/registeradmin') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
