@@ -106,14 +106,23 @@ class AdminController extends Controller
         //
     }
     
-    public function edit($id)
+    // edit meeting room
+    public function editmeetingroom()
     {
-        //
-     }
+
+        $room= room::where('status', '=', 'aktif')->pluck('title', 'title');
+       
+        return view('admin.editmeetingroom', compact('room'));
+    }
 
     public function update(Request $request, $id)
     {
-
+        //  $rooms = room::find($id);
+        
+        // $rooms->title = $request->input('title');
+        // $rooms->status = $request->input('status');
+        // $rooms->color = $request->input('color');
+        // $rooms->save();
     }
 
     public function destroy($id)

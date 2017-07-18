@@ -29,25 +29,32 @@
                             </ul>
                         </div>
                         @endif
+
+                        <!-- papar succes noti -->
+                       <!--  @if ( Session::has('success') )
+                        <div class="alert alert-success" role="alert">
+                            {{ Session::get('success') }}
+                        </div>
+                        @endif -->
                 <div class="panel-body">
                      
                 <!-- tambah form kat sini -->
 
                 {!! Form::open(['route' => 'bookingroom.store']) !!}
 
-                <div>
+                <div class="form-group {{ $errors-> has('department_name') ? 'has-error' : false }}">
                     {!! Form::label('department_name', 'Bahagian/Unit:'); !!}
                     {!! Form::select('department_name', $departments , null, ['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
                 </div>
 
 
-                 <div>
+                 <div class="form-group {{ $errors-> has('title') ? 'has-error' : false }}">
                     {!! Form::label('title', 'Bilik Mesyuarat:'); !!}
                     {!! Form::select('title', $rooms , null, ['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
                 </div>
 
                 <!-- select date -->
-                <div class="form-group">
+                <div class="form-group {{ $errors-> has('start') ? 'has-error' : false }}">
                     {!! Form::label('start', 'tarikh :'); !!}
                      {!! Form::date('start', '',['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
                 </div>
@@ -63,7 +70,7 @@
                     {!! Form::checkbox('stuff_list', 'LCD', false); !!}LCD
                 </div> -->
 
-                <div>
+                <div class="form-group {{ $errors-> has('stuff_list') ? 'has-error' : false }}">
                     {!! Form::label('stuff_list', 'Peralatan :'); !!}
                     {!! Form::select('stuff_list', $stuffs , null, ['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
                 </div>
@@ -148,9 +155,14 @@
                      // dataType: dataType
                    });
                 }
-            }
+            },
            // timeFormat: 'H(:mm)' // uppercase H for 24-hour clock
         
+         eventClick: function(calEvent, jsEvent, view) {
+
+            var url='/bookingroom/'+calEvent.id+'/edit';
+            window.location = url;
+            }
         })
     });
 </script>

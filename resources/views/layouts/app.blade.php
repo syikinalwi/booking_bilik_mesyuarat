@@ -92,6 +92,7 @@
 
         <div class="container">
             <!-- auth not functioning -->
+           
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
@@ -103,7 +104,7 @@
                             <li><a href="{{ url('/bookingroom/create') }}">Tempah Bilik Mesyuarat</a></li>
 
                             <!-- edit form.. double click at existing event.. will appear edit form -->
-                            <li><a href="{{ url('/bookingroom/{bookingroom}/edit') }}">Edit Bilik Mesyuarat</a></li> 
+                            <!-- <li><a href="{{ url('/bookingroom/{bookingroom}/edit') }}">Edit Bilik Mesyuarat</a></li>  -->
                         </ul>
                     </li>
                      <li class="dropdown">
@@ -114,8 +115,7 @@
                         </ul>
                     </li>
                     </ul>
-
-               
+                   
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

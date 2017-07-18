@@ -38,13 +38,15 @@ Route::resource('/admin/form', 'AdminController');
 // create URI, Name at cmder 
 Route::get('/admin/registeradmin',['as'=>'admin.registeradmin', 'uses'=> 'AdminController@getRegisterAdmin']);
 Route::post('/admin/registeradmin',['as'=>'admin.registeradmin', 'uses'=> 'AdminController@RegisterAdmin']);
-
 Route::post('/admin/form/adddepartmentname', ['as'=>'admin.form.adddepartmentname', 'uses'=>'AdminController@addDepartmentName']);
 Route::post('/admin/form/addstuff', ['as'=>'admin.form.addstuff', 'uses'=>'AdminController@addStuffList']);
 
-// Route::post('/admin', 'AdminController@store');
 
 Route::get('/admin/adddepartmentname', ['as' => 'admin.adddepartmentname', 'uses' => 'AdminController@createdepartmentname']);
+
+
 Route::get('/admin/meetingroom', ['as' => 'admin.createmeetingroom', 'uses' => 'AdminController@createmeetingroom']);
+Route::get('/admin/editmeetingroom/', ['as' => 'admin.editmeetingroom', 'uses' => 'AdminController@editmeetingroom']);
+
 Route::get('/admin/addstuff', ['as' => 'admin.addstuff', 'uses' => 'AdminController@createaddstuff']);
 // Route::get('/bookingrooms/event', 'BookingRoomController@getevents');

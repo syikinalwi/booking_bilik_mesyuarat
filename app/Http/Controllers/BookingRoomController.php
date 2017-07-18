@@ -84,7 +84,11 @@ class BookingRoomController extends Controller
 
     public function edit($id)
     {
+        // needs this function to retrive data from db
+        // bookingroom db table = use bookingroom model :: find data by id in db
+        // pluck clickable data from db
         $bookingrooms = bookingroom::find($id);
+
         $departments= Department::pluck('department_name', 'id');
         $rooms= room::where('status', '=', 'aktif')->pluck('title', 'title');
         $stuffs= stuff::where('status', '=', 'aktif')->pluck('stuff_name', 'id');
@@ -92,13 +96,29 @@ class BookingRoomController extends Controller
         $foods = food::pluck('food_name', 'id');
         $drinks = drink::pluck('drink_name', 'id');
         $currtime = date('H:i');
-        return view('bookingroom.edit', compact('departments','rooms', 'meetingtitles', 'foods', 'drinks','currtime', 'stuffs'));
+        return view('bookingroom.edit', compact('bookingrooms','departments','rooms', 'meetingtitles', 'foods', 'drinks','currtime', 'stuffs'));
     }
 
    
     public function update(Request $request, $id)
     {
-        //
+        // needs this function to update and replace old data with the latest booked room
+        // update data by id
+        $bookingroom = bookingroom::find($id); 
+        // insert the data into db
+        $bookingroom->department_name = $request->input('department_name');
+        $bookingroom->title = $request->input('title'); //title->title
+        $bookingroom->time = $request->input('time'); 
+        $bookingroom->meetingtitle_name = $request->input('meetingtitle_name');
+        $bookingroom->stuff_list = $request->input('stuff_list');
+        $bookingroom->food_name = $request->input('food_name');
+        $bookingroom->drink_name = $request->input('drink_name');
+        $dateevent = $request->input('start').' '.$request->input('time');
+        $bookingroom->start = $dateevent;
+        // $bookingroom->start = Carbon::parse($request->input('startdate'))->format('d-m-Y 00:00:00');
+        $bookingroom->save();
+
+        return redirect()->route('bookingroom.create');
     } 
     
     public function destroy($id)

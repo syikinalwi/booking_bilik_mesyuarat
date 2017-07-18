@@ -23,10 +23,8 @@
                             <tr>
                                 <th>Tambah Item</th>
                                 <th>Daftar/Edit</th>
-                                
-
                             </tr>
-                            </thead>
+                        </thead>
                             <tbody>
                             <tr>
                                 <td>Bahagian/Unit</td>
@@ -37,7 +35,7 @@
                             <tr>
                                 <td>Bilik Mesyuarat</td>
                                 <td><a href="{{ url('/admin/meetingroom') }}" class="btn btn-primary">Daftar</a>
-                                    <a href="#" class="btn btn-warning">Edit</a>
+                                    <a href="{{ url('/admin/editmeetingroom')}}" class="btn btn-warning">Edit</a>
                                 </td>
                             </tr> 
                              <tr>
@@ -46,7 +44,7 @@
                                     <a href="#" class="btn btn-warning">Edit</a>
                                 </td>
                             </tr> 
-                                                   </tbody>
+                            </tbody>
                         </table>
                        
                     </div>
