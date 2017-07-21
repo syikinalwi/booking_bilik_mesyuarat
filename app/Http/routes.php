@@ -38,15 +38,20 @@ Route::resource('/admin/form', 'AdminController');
 // create URI, Name at cmder 
 Route::get('/admin/registeradmin',['as'=>'admin.registeradmin', 'uses'=> 'AdminController@getRegisterAdmin']);
 Route::post('/admin/registeradmin',['as'=>'admin.registeradmin', 'uses'=> 'AdminController@RegisterAdmin']);
-Route::post('/admin/form/adddepartmentname', ['as'=>'admin.form.adddepartmentname', 'uses'=>'AdminController@addDepartmentName']);
-Route::post('/admin/form/addstuff', ['as'=>'admin.form.addstuff', 'uses'=>'AdminController@addStuffList']);
+
 
 
 Route::get('/admin/adddepartmentname', ['as' => 'admin.adddepartmentname', 'uses' => 'AdminController@createdepartmentname']);
+Route::post('/admin/form/adddepartmentname', ['as'=>'admin.form.adddepartmentname', 'uses'=>'AdminController@addDepartmentName']);
+Route::get('/admin/editdepartmentname/{id}', ['as' => 'admin.editdepartmentname', 'uses' => 'AdminController@editdepartmentname']);
+Route::get('/admin/showdepartmentname', ['as' => 'admin.showdepartmentname', 'uses' => 'AdminController@showdepartmentname']);
+Route::post('/admin/destroydepartmentname', ['as' => 'admin.destroydepartmentname', 'uses' => 'AdminController@destroydepartmentname']);
 
 
 Route::get('/admin/meetingroom', ['as' => 'admin.createmeetingroom', 'uses' => 'AdminController@createmeetingroom']);
 Route::get('/admin/editmeetingroom/', ['as' => 'admin.editmeetingroom', 'uses' => 'AdminController@editmeetingroom']);
+Route::get('/admin/showmeetingroom', ['as' => 'admin.showmeetingroom', 'uses' => 'AdminController@showmeetingroom']);
 
 Route::get('/admin/addstuff', ['as' => 'admin.addstuff', 'uses' => 'AdminController@createaddstuff']);
+Route::post('/admin/form/addstuff', ['as'=>'admin.form.addstuff', 'uses'=>'AdminController@addStuffList']);
 // Route::get('/bookingrooms/event', 'BookingRoomController@getevents');

@@ -17,86 +17,23 @@ use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\CreateDepartmentNameRequest;
 use App\Http\Requests\CreateStuffListRequest;
 use App\Http\Requests\CreateRegisterAdminRequest;
+use Alert;
 
 class AdminController extends Controller
 {
     public function index()
     {
-
        return view ('admin.form');
     }
+// Admin controller 
+    // function to register new admin
     public function getRegisterAdmin()
     {
         return view ('admin.registeradmin');
     }
-
-    public function create()
-    {
-        
-        // return view ('admin.adddepartmentname');
-    }
-
-      public function createdepartmentname()
-    {
-        
-        return view ('admin.adddepartmentname');
-    }
-     public function createmeetingroom()
-    {
-        return view ('admin.meetingroom');
-    }
-
-     public function createaddstuff()
-    {
-        return view ('admin.addstuff');
-    }
-
-     public function event()
-    {
-        return view ('bookingrooms.event');
-    }
-
-    // store new meeting room
-    public function store(CreateAdminRequest $request)
-    {
-        // dd('asas');
-        $rooms = new room;
-        $rooms->title = $request->input('title');
-        $rooms->status = $request->input('status');
-        $rooms->color = $request->input('color');
-        $rooms->save();
-
-        return redirect()->route('admin.createmeetingroom')->withSuccess('Room created!!');
-    }
-    // store new department
-    public function addDepartmentName(CreateDepartmentNameRequest $request) {
-
-        $department = new Department;
-        $department->department_name = $request->input('department_name');
-        $department->status = $request->input('status');
-       
-        $department->save();
-
-        return redirect()->route('admin.adddepartmentname')->withSuccess('New Department created!!');    
-
-    }
-    
-    // store new stuff
-     public function addStuffList(CreateStuffListRequest $request) {
-
-        $stuffs = new stuff;
-        $stuffs->stuff_name = $request->input('stuff_list');
-        $stuffs->status = $request->input('status');
-        $stuffs->save();
-
-        return redirect()->route('admin.addstuff')->withSuccess('New Department created!!');    
-
-    }
-
-    // store registered admin
+     // store registered admin
     public function RegisterAdmin(CreateRegisterAdminRequest $request)
     {
-
         $user = new User;
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -104,25 +41,26 @@ class AdminController extends Controller
         $user->position = $request->input('position');
         $user->save();
 
-
         return view('admin.form');
-
-
     } 
-    
+
+    public function create()
+    {
+        
+        // return view ('admin.adddepartmentname');
+    }
+
+    public function event()
+    {
+        return view ('bookingrooms.event');
+    }
+
     public function show($id)
     {
         //
     }
     
-    // edit meeting room
-    public function editmeetingroom()
-    {
-
-        $room= room::where('status', '=', 'aktif')->pluck('title', 'title');
-       
-        return view('admin.editmeetingroom', compact('room'));
-    }
+   
 
     public function update(Request $request, $id)
     {
@@ -134,8 +72,116 @@ class AdminController extends Controller
         // $rooms->save();
     }
 
-    public function destroy($id)
+    //------------department name controller---------------------------
+    public function createdepartmentname()
     {
-        //
+        
+        return view ('admin.adddepartmentname');
+    }
+
+    public function addDepartmentName(CreateDepartmentNameRequest $request) 
+    {
+        $department = new Department;
+        $department->department_name = $request->input('department_name');
+        $department->status = $request->input('status');
+       
+        $department->save();
+
+        return redirect()->route('admin.adddepartmentname')->withSuccess('New Department created!!');    
+    }
+
+     public function editdepartmentname($id)
+    { 
+        // dd('asasa');
+        $department= Department::findOrFail($id)->pluck('department_name', 'id');
+        
+        //needs to pluck status  
+        return view('admin.editdepartmentname', compact('department'));
+    }
+
+    public function showdepartmentname()
+    {
+        // dd('asas');
+
+        $department = Department::paginate(8);
+        
+        // $products = Product::with('brand','subcategory','area','user');
+         // $department = $department->orderBy('id', 'desc');
+
+        // $department = $department->paginate(2);
+
+        return view('admin.showdepartmentname')->with('departments', $department);
+    }
+
+    public function destroydepartmentname(Request $request)
+    {
+        // dd('asas'); //x jdi jugok ni
+
+        $id = $request->input('id');
+             // $department = Department::find($id);
+         $department = Department::findOrFail($id);
+
+        $department->delete();
+
+        // flash('department successfully deleted')->success();
+        // Alert::success('department successfully deleted!');
+
+        return redirect()->route('admin.form.index');
+        // return view('admin.form');
+    }
+
+
+
+    //-------- meeting room controller-----------------
+    public function createmeetingroom()
+    {
+        return view ('admin.meetingroom');
+    }
+        // store meetingroom
+    public function editmeetingroom()
+    { 
+        // dd('asasa');
+        $room= room::where('status', '=', 'aktif')->pluck('title', 'title');
+        
+        //needs to pluck status  
+        return view('admin.editmeetingroom', compact('room'));
+    }
+
+    public function store(CreateAdminRequest $request)
+    {
+        // dd('asas');
+        $rooms = new room;
+        $rooms->title = $request->input('title');
+        $rooms->status = $request->input('status');
+        $rooms->color = $request->input('color');
+        $rooms->save();
+
+        return redirect()->route('admin.createmeetingroom')->withSuccess('Room created!!');
+    }
+
+     public function showmeetingroom()
+    {
+        // dd('asas');
+
+        $rooms = room::all();//->paginate(2);
+        return view('admin.showmeetingroom')->with('rooms', $rooms);
+    }
+
+    //---------------------stuff controller----------------------------------
+    public function createaddstuff()
+    {
+        return view ('admin.addstuff');
+    }
+
+    // store new stuff
+     public function addStuffList(CreateStuffListRequest $request) {
+
+        $stuffs = new stuff;
+        $stuffs->stuff_name = $request->input('stuff_list');
+        $stuffs->status = $request->input('status');
+        $stuffs->save();
+
+        return redirect()->route('admin.addstuff')->withSuccess('New Department created!!');    
+
     }
 }

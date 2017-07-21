@@ -95,11 +95,20 @@
 
 <!-- button action form-->
         <div class="col-xs-3">
+
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <a href="#" class="btn btn-default">Print Tajuk Mesyuarat</a>
+                </div>
+            </div>
+
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <a href="#" class="btn btn-default">Print Borang Tempahan</a>
                 </div>
             </div>
+
             <div class="panel panel-success">
                 <div class="panel-heading">        
                     <a href="#" class="btn btn-default">Padam Borang Tempahan</a>

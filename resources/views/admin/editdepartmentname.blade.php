@@ -34,7 +34,7 @@
                    <div>
                     {!! Form::label('department_name', 'Bahagian/Unit:'); !!}
                     <!-- whatever department name inserted,needs to add it into the dropdown list which user can viewed-->
-                    {!! Form::text('department_name', '', ['class'=>'form-control']); !!}
+                    {!! Form::text('department_name', $department, ['class'=>'form-control']); !!}
                 </div>
 
                 <div class="form-group {{ $errors-> has('status') ? 'has-error' : false }}">

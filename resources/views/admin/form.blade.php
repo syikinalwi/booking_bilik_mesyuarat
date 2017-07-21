@@ -29,19 +29,20 @@
                             <tr>
                                 <td>Bahagian/Unit</td>
                                 <td><a href="{{ url('/admin/adddepartmentname') }}" class="btn btn-primary">Daftar</a>
-                                    <a href="#" class="btn btn-warning">Edit</a>
+                                    <a href="{{ route('admin.showdepartmentname') }}" class="btn btn-warning">Show</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Bilik Mesyuarat</td>
                                 <td><a href="{{ url('/admin/meetingroom') }}" class="btn btn-primary">Daftar</a>
-                                    <a href="{{ url('/admin/editmeetingroom')}}" class="btn btn-warning">Edit</a>
+                                <!-- fix url for showing the data -->
+                                    <a href="{{ url('/admin/showmeetingroom') }}" class="btn btn-warning">Show</a>
                                 </td>
                             </tr> 
                              <tr>
                                 <td>Peralatan</td>
                                 <td><a href="{{ url('/admin/addstuff') }}" class="btn btn-primary">Daftar</a>
-                                    <a href="#" class="btn btn-warning">Edit</a>
+                                    <a href="#" class="btn btn-warning">Show</a>
                                 </td>
                             </tr> 
                             </tbody>
