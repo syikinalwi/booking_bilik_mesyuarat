@@ -40,10 +40,8 @@
                            <th>Tarikh Daftar</th>
                            <th>Tarikh Kemaskini</th>
                            <th>Action</th>
-
-
                         </tr>
-                        </thead>
+                    </thead>
                         <tbody>
 
                         @foreach($rooms as $room)
@@ -53,29 +51,28 @@
                             <td>{{ $room->color }}</td>
                             <td>{{ $room->created_at }}</td>
                             <td>{{ $room->updated_at }}</td>
-                            <!-- <td>{{ $department->deleted_at }}</td> -->
                             <td><div class="btn-group">
 
-                         <!-- method post define by id -->
-                          <!-- error.. cannot eccess the route ...,$department->id -->
-                            <form method="POST" action="{{ route('admin.destroydepartmentname') }}">
-                            <input type="hidden" name="_method" value="DELETE">
+                            <!-- method post define by id -->
+                           
+                            <form method="POST" action="{{ route('admin.destroymeetingroom') }}">
+                            <input type="hidden" name="id" value="{{ $room->id }}">
 
                              {{ csrf_field() }}
-                             <a href="{{ url('/admin/editmeetingroom') }}" type="button" class="btn btn-success">Edit</a>
+                             <a href="{{ url('/admin/editmeetingroom', '$room->id') }}" class="btn btn-success">Edit</a>
+
 
                             <button type="submit" class="btn btn-danger delete">Delete</button>
-
                             </form>                            
-                            </div></td>
-            
+                            </div></td>        
                         </tr>
                         @endforeach
-
-                           
                         </tbody>
                     </table>
-            
+
+                    <div>{{ $rooms->appends(Request::except('page'))->links() }}</div>
+                    <a href="{{ url('/admin/form') }}" class="btn btn-primary">Kembali</a>
+             
            </div>
             </div>
         </div>

@@ -43,15 +43,20 @@ Route::post('/admin/registeradmin',['as'=>'admin.registeradmin', 'uses'=> 'Admin
 
 Route::get('/admin/adddepartmentname', ['as' => 'admin.adddepartmentname', 'uses' => 'AdminController@createdepartmentname']);
 Route::post('/admin/form/adddepartmentname', ['as'=>'admin.form.adddepartmentname', 'uses'=>'AdminController@addDepartmentName']);
-Route::get('/admin/editdepartmentname/{id}', ['as' => 'admin.editdepartmentname', 'uses' => 'AdminController@editdepartmentname']);
 Route::get('/admin/showdepartmentname', ['as' => 'admin.showdepartmentname', 'uses' => 'AdminController@showdepartmentname']);
+Route::get('/admin/editdepartmentname/{id}', ['as' => 'admin.editdepartmentname', 'uses' => 'AdminController@editdepartmentname']);
 Route::post('/admin/destroydepartmentname', ['as' => 'admin.destroydepartmentname', 'uses' => 'AdminController@destroydepartmentname']);
 
 
 Route::get('/admin/meetingroom', ['as' => 'admin.createmeetingroom', 'uses' => 'AdminController@createmeetingroom']);
-Route::get('/admin/editmeetingroom/', ['as' => 'admin.editmeetingroom', 'uses' => 'AdminController@editmeetingroom']);
 Route::get('/admin/showmeetingroom', ['as' => 'admin.showmeetingroom', 'uses' => 'AdminController@showmeetingroom']);
+Route::get('/admin/editmeetingroom/{id}', ['as' => 'admin.editmeetingroom', 'uses' => 'AdminController@editmeetingroom']);
+Route::post('/admin/destroymeetingroom', ['as' => 'admin.destroymeetingroom', 'uses' => 'AdminController@destroymeetingroom']);
+
 
 Route::get('/admin/addstuff', ['as' => 'admin.addstuff', 'uses' => 'AdminController@createaddstuff']);
 Route::post('/admin/form/addstuff', ['as'=>'admin.form.addstuff', 'uses'=>'AdminController@addStuffList']);
+Route::get('/admin/showstuff', ['as' => 'admin.showstuff', 'uses' => 'AdminController@showstuff']);
+Route::get('/admin/editstuff/{id}', ['as' => 'admin.editstuff', 'uses' => 'AdminController@editstuff']);
+Route::post('/admin/destroystuff', ['as' => 'admin.destroystuff', 'uses' => 'AdminController@destroystuff']);
 // Route::get('/bookingrooms/event', 'BookingRoomController@getevents');

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
 
     <div class="row">
         <div class="col-md-12">
@@ -36,12 +36,10 @@
                         <tr>
                             <th>Bahagian/Unit</th>
                            <th>Status</th>
-                           <th>Warna</th>
+                           <!-- <th>Warna</th> -->
                            <th>Tarikh Daftar</th>
                            <th>Tarikh Kemaskini</th>
                            <th>Action</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -50,7 +48,7 @@
                         <tr>
                             <td>{{ $department->department_name }}</td> 
                             <td>{{ $department->status }}</td>
-                            <td>{{ $department->color }}</td>
+                            <!-- <td>{{ $department->color }}</td> -->
                             <td>{{ $department->created_at }}</td>
                             <td>{{ $department->updated_at }}</td>
                             <!-- <td>{{ $department->deleted_at }}</td> -->
@@ -71,13 +69,12 @@
             
                         </tr>
                         @endforeach
-
-                           
                         </tbody>
                     </table>
-            
-          {{ $departments->appends(Request::except('page'))->links() }}
-           </div>
+                    <div>{{ $departments->appends(Request::except('page'))->links() }}</div>
+                    <a href="{{ url('/admin/form') }}" class="btn btn-primary">Kembali</a>
+             
+            </div>
             </div>
         </div>
     </div>

@@ -115,18 +115,16 @@ class AdminController extends Controller
 
     public function destroydepartmentname(Request $request)
     {
-        // dd('asas'); //x jdi jugok ni
-
+        // dd('asas'); 
         $id = $request->input('id');
-             // $department = Department::find($id);
-         $department = Department::findOrFail($id);
-
+        // $department = Department::find($id);
+        $department = Department::findOrFail($id);
         $department->delete();
 
         // flash('department successfully deleted')->success();
         // Alert::success('department successfully deleted!');
 
-        return redirect()->route('admin.form.index');
+        return redirect()->route('admin.showdepartmentname');
         // return view('admin.form');
     }
 
@@ -137,16 +135,24 @@ class AdminController extends Controller
     {
         return view ('admin.meetingroom');
     }
+
         // store meetingroom
-    public function editmeetingroom()
+    public function editmeetingroom($id)
     { 
         // dd('asasa');
-        $room= room::where('status', '=', 'aktif')->pluck('title', 'title');
+        $room= room::where('status', '=', 'aktif')->pluck('title', 'id');
         
         //needs to pluck status  
         return view('admin.editmeetingroom', compact('room'));
     }
-
+      public function showmeetingroom()
+    {
+        // dd('asas');
+        $rooms = room::paginate(2);
+        // $rooms = room::all();//->paginate(2);
+        return view('admin.showmeetingroom')->with('rooms', $rooms);
+    }
+     
     public function store(CreateAdminRequest $request)
     {
         // dd('asas');
@@ -159,13 +165,21 @@ class AdminController extends Controller
         return redirect()->route('admin.createmeetingroom')->withSuccess('Room created!!');
     }
 
-     public function showmeetingroom()
+  
+    public function destroymeetingroom(Request $request)
     {
-        // dd('asas');
+        // dd('asas'); 
+        $id = $request->input('id');
+        $rooms = room::findOrFail($id);
+        $rooms->delete();
 
-        $rooms = room::all();//->paginate(2);
-        return view('admin.showmeetingroom')->with('rooms', $rooms);
+        // flash('room successfully deleted')->success();
+        // Alert::success('room successfully deleted!');
+
+        return redirect()->route('admin.showmeetingroom');
+        // return view('admin.form');
     }
+
 
     //---------------------stuff controller----------------------------------
     public function createaddstuff()
@@ -181,7 +195,49 @@ class AdminController extends Controller
         $stuffs->status = $request->input('status');
         $stuffs->save();
 
-        return redirect()->route('admin.addstuff')->withSuccess('New Department created!!');    
+        return redirect()->route('admin.addstuff')->withSuccess('New Stuff created!!');    
 
     }
+
+    public function showstuff()
+    {
+        // dd('asas');
+
+        $stuffs = stuff::paginate(3);
+        
+        // $products = Product::with('brand','subcategory','area','user');
+         // $stuff = $stuff->orderBy('id', 'desc');
+
+        // $stuff = $stuff->paginate(2);
+
+        return view('admin.showstuff')->with('stuffs', $stuffs);
+    }
+
+          // store meetingroom
+    public function editstuff($id)
+    { 
+        // dd('asasa'); //->where($entity_model->getKeyName(), $id)
+        // $stuffs = stuff::findOrFail($id)->where($stuff->stuff(), $id);//get from internet
+        // $stuffs= stuff::findOrFail($id)->pluck('stuff_name', 'id');
+        $stuffs= stuff::all();
+        
+        //needs to pluck status  
+
+        return view('admin.editstuff', compact('stuffs')); 
+    }
+
+    public function destroystuff(Request $request)
+    {
+        // dd('asas'); 
+        $id = $request->input('id');
+        $stuff = stuff::findOrFail($id);
+        $stuff->delete();
+
+        // flash('stuff successfully deleted')->success();
+        // Alert::success('stuff successfully deleted!');
+
+        return redirect()->route('admin.showstuff');
+        // return view('admin.form');
+    }
+     
 }

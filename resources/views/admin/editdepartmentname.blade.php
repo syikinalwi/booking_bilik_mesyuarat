@@ -37,16 +37,10 @@
                     {!! Form::text('department_name', $department, ['class'=>'form-control']); !!}
                 </div>
 
-                <div class="form-group {{ $errors-> has('status') ? 'has-error' : false }}">
-                    {!! Form::label('status', 'Status:'); !!}
-                    {!! Form::radio('status', 'Aktif', false); !!}Aktif
-                    {!! Form::radio('status', 'TakAktif', false); !!}Tak Aktif
-                </div>
-
-                 <!-- button submit -->
+                <!-- button submit -->
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Tambah</button>
-                    <a href="{{ url('/admin/form') }}" class="btn btn-danger">Kembali</a>
+                    <a href="{{ url('/admin/showdepartmentname') }}" class="btn btn-danger">Kembali</a>
                 </div>
                  <!-- tutupform kat sini -->
             {!! Form::close() !!}

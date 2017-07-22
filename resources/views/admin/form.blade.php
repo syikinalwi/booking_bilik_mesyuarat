@@ -42,7 +42,7 @@
                              <tr>
                                 <td>Peralatan</td>
                                 <td><a href="{{ url('/admin/addstuff') }}" class="btn btn-primary">Daftar</a>
-                                    <a href="#" class="btn btn-warning">Show</a>
+                                    <a href="{{ url('/admin/showstuff') }}" class="btn btn-warning">Show</a>
                                 </td>
                             </tr> 
                             </tbody>

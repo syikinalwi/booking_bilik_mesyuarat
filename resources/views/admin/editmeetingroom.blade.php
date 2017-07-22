@@ -38,10 +38,15 @@
                     {!! Form::radio('status', 'TakAktif', false); !!}Tak Aktif
                 </div>
 
+                <div class="form-group {{ $errors-> has('color') ? 'has-error' : false }}">
+                    {!! Form::label('color', 'color :'); !!}
+                     {!! Form::color('color'); !!}
+                </div>
+
                  <!-- button submit -->
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Tambah</button>
-                    <a href="{{ url('/admin/form') }}" class="btn btn-danger">Kembali</a>
+                    <a href="{{ url('/admin/showmeetingroom') }}" class="btn btn-danger">Kembali</a>
                 </div>
                  <!-- tutupform kat sini -->
            

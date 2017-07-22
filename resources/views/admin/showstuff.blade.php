@@ -34,9 +34,8 @@
                     <table class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>Bahagian/Unit</th>
+                           <th>Peralatan</th>
                            <th>Status</th>
-                           <th>Warna</th>
                            <th>Tarikh Daftar</th>
                            <th>Tarikh Kemaskini</th>
                            <th>Action</th>
@@ -46,27 +45,26 @@
                         </thead>
                         <tbody>
 
-                        @foreach($departments as $department)
+                        @foreach($stuffs as $stuff)
                         <tr>
-                            <td>{{ $department->department_name }}</td> 
-                            <td>{{ $department->status }}</td>
-                            <td>{{ $department->color }}</td>
-                            <td>{{ $department->created_at }}</td>
-                            <td>{{ $department->updated_at }}</td>
-                            <!-- <td>{{ $department->deleted_at }}</td> -->
+                            <td>{{ $stuff->stuff_name }}</td> 
+                            <td>{{ $stuff->status }}</td>
+                            <td>{{ $stuff->created_at }}</td>
+                            <td>{{ $stuff->updated_at }}</td>
+                            <!-- <td>{{ $stuff->deleted_at }}</td> -->
                             <td><div class="btn-group">
 
                          <!-- method post define by id -->
-                          <!-- error.. cannot eccess the route ...,$department->id -->
-                            <form method="POST" action="{{ route('admin.destroydepartmentname') }}">
-                            <input type="hidden" name="_method" value="DELETE">
+                          <!-- error.. cannot eccess the route ...,$stuff->id -->
+                            <form method="POST" action="{{ route('admin.destroystuff') }}">
+                            <input type="hidden" name="id" value="{{ $stuff->id }}">
 
                              {{ csrf_field() }}
-                             <a href="#" class="btn btn-success">Edit</a>
+                             <a href="{{ url('/admin/editstuff/{id}') }}" class="btn btn-success">Edit</a>
 
                             <button type="submit" class="btn btn-danger delete">Delete</button>
 
-                            </form>                            
+                            </form>                      
                             </div></td>
             
                         </tr>
@@ -76,6 +74,8 @@
                         </tbody>
                     </table>
             
+                    <div>{{ $stuffs->appends(Request::except('page'))->links() }}</div>
+                    <a href="{{ url('/admin/form') }}" class="btn btn-primary">Kembali</a>
            </div>
             </div>
         </div>
