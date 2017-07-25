@@ -45,7 +45,7 @@
 
                  <!-- button submit -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Tambah</button>
+                    <button type="submit" class="btn btn-success">Kemaskini</button>
                     <a href="{{ url('/admin/showmeetingroom') }}" class="btn btn-danger">Kembali</a>
                 </div>
                  <!-- tutupform kat sini -->
