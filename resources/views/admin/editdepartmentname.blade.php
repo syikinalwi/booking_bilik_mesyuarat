@@ -27,14 +27,14 @@
                 <div class="panel-heading">Edit Tambah Nama Bilik</div>
                 <div class="panel-body">
                  <!-- tambah form kat sini -->
-                {!! Form::open(['route' => 'admin.form.adddepartmentname']) !!}
-             
+                 <!-- form sent as to update data and needs to pass data by id -->
+               
                 <div class="form-group {{ $errors-> has('department_name') ? 'has-error' : false }}">
                     {!! Form::label('department_name', 'Bahagian/Unit:'); !!}
-                    <!-- whatever department name inserted,needs to add it into the dropdown list which user can viewed-->
-                    {!! Form::select('department_name', $department, ['class'=>'form-control']); !!}
+                    {!! Form::select('department_name', $department, '',['placeholder' => '--Sila Pilih--', 'class'=>'form-control']); !!}
                 </div>
-                 <div class="form-group {{ $errors-> has('status') ? 'has-error' : false }}">
+
+                <div class="form-group {{ $errors-> has('status') ? 'has-error' : false }}">
                     {!! Form::label('status', 'Status:'); !!}
                     {!! Form::radio('status', 'Aktif', false); !!}Aktif
                     {!! Form::radio('status', 'TakAktif', false); !!}Tak Aktif
@@ -45,8 +45,8 @@
                     <button type="submit" class="btn btn-success">Kemaskini</button>
                     <a href="{{ url('/admin/showdepartmentname') }}" class="btn btn-danger">Kembali</a>
                 </div>
+                </div>
                  <!-- tutupform kat sini -->
-            {!! Form::close() !!}
             </div>
         </div>
     </div>

@@ -26,6 +26,9 @@ Route::get('calendar', 'CalendarController@index');
 
 //route for booking
 Route::resource('bookingroom', 'BookingRoomController');
+
+Route::post('bookingroom',['as'=>'bookingroom.store', 'uses'=>'BookingRoomController@store']);
+Route::delete('bookingroom',['as'=>'bookingroom.destroyEvent', 'uses'=>'BookingRoomController@destroyEvent']);
 Route::get('/bookingrooms/getallevents', 'BookingRoomController@getAllEvents');
 Route::post('/bookingroom/updateevents/{event_id}', 'BookingRoomController@updateevents');
 // Route::get('bookingroom/add_events', 'BookingRoomController@getevents');
@@ -45,6 +48,8 @@ Route::get('/admin/adddepartmentname', ['as' => 'admin.adddepartmentname', 'uses
 Route::post('/admin/form/adddepartmentname', ['as'=>'admin.form.adddepartmentname', 'uses'=>'AdminController@addDepartmentName']);
 Route::get('/admin/showdepartmentname', ['as' => 'admin.showdepartmentname', 'uses' => 'AdminController@showdepartmentname']);
 Route::get('/admin/editdepartmentname/{id}', ['as' => 'admin.editdepartmentname', 'uses' => 'AdminController@editdepartmentname']);
+Route::post('/admin/updatedepartmentname', ['as' => 'admin.updatedepartmentname', 'uses' => 'AdminController@updatedepartmentname']);
+// Route::post('/admin/updatedepartmentname/{id}', 'AdminController@updatedepartmentname');
 Route::post('/admin/destroydepartmentname', ['as' => 'admin.destroydepartmentname', 'uses' => 'AdminController@destroydepartmentname']);
 
 

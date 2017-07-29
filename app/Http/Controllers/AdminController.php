@@ -25,7 +25,7 @@ class AdminController extends Controller
     {
        return view ('admin.form');
     }
-// Admin controller 
+    // Admin controller 
     // function to register new admin
     public function getRegisterAdmin()
     {
@@ -111,6 +111,23 @@ class AdminController extends Controller
         // $department = $department->paginate(2);
 
         return view('admin.showdepartmentname')->with('departments', $department);
+    }
+    public function updatedepartmentname(Request $request)
+    {
+        // needs this function to update and replace old data with the latest booked room
+        // update data by id
+        
+        // $department =  Department::find($id);
+        //insert data into db
+
+        // $department= Department::findOrFail($id)->pluck('department_name', 'id');
+        
+        $department->department_name = $request->input('department_name');
+        $department->status = $request->input('status');
+       
+        $department->save();
+
+        return redirect()->route('admin.editdepartmentname');
     }
 
     public function destroydepartmentname(Request $request)

@@ -24,6 +24,7 @@ class BookingRoomController extends Controller
        
         //dbname=model.php::pluck from AttributeDb
         $departments= Department::pluck('department_name', 'id');
+        $departments= Department::where('status', '=', 'aktif')->pluck('department_name', 'id');
         $rooms= room::where('status', '=', 'aktif')->pluck('title', 'title');
         $stuffs= stuff::where('status', '=', 'aktif')->pluck('stuff_name', 'id');
         $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
@@ -38,7 +39,8 @@ class BookingRoomController extends Controller
     public function create()
     {
         //dbname=model.php::pluck from AttributeDb
-        $departments= Department::pluck('department_name', 'id');
+        // $departments= Department::pluck('department_name', 'id');
+        $departments= Department::where('status', '=', 'aktif')->pluck('department_name', 'id');
         $rooms= room::where('status', '=', 'aktif')->pluck('title', 'title');
         $stuffs= stuff::where('status', '=', 'aktif')->pluck('stuff_name', 'id');
         $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
@@ -89,7 +91,8 @@ class BookingRoomController extends Controller
         // pluck clickable data from db
         $bookingrooms = bookingroom::find($id);
 
-        $departments= Department::pluck('department_name', 'id');
+        // $departments= Department::pluck('department_name', 'id');
+        $departments= Department::where('status', '=', 'aktif')->pluck('department_name', 'id');
         $rooms= room::where('status', '=', 'aktif')->pluck('title', 'title');
         $stuffs= stuff::where('status', '=', 'aktif')->pluck('stuff_name', 'id');
         $meetingtitles = meetingtitle::pluck('meetingtitle_name', 'id');
@@ -121,10 +124,22 @@ class BookingRoomController extends Controller
         return redirect()->route('bookingroom.create');
     } 
     
-    public function destroy($id)
+    public function destroyEvent(Request $request)
     {
-        //
+        
+        // dd('asas'); 
+        $id = $request->input('id');
+        // $department = Department::find($id);
+        $bookingroom = bookingroom::findOrFail($id);
+        $bookingroom->delete();
+
+        // flash('bookingroom successfully deleted')->success();
+        // Alert::success('bookingroom successfully deleted!');
+
+        return redirect()->route('bookingroom.create');
     }
+
+
     public function getevents()
     {
         return view ('bookingroom.events');
