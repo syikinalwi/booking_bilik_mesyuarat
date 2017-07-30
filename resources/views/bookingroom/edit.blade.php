@@ -94,10 +94,10 @@
         </div>
 
 <!-- button action form-->
-        <div class="col-xs-3">
+        <!-- <div class="col-xs-3"> -->
 
 
-            <div class="panel panel-success">
+           <!--  <div class="panel panel-success">
                 <div class="panel-heading">
                     <a href="#" class="btn btn-default">Print Tajuk Mesyuarat</a>
                 </div>
@@ -107,23 +107,23 @@
                 <div class="panel-heading">
                     <a href="#" class="btn btn-default">Print Borang Tempahan</a>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="panel panel-success">
-                <div class="panel-heading">        
+          <!--   <div class="panel panel-success">
+                <div class="panel-heading">  -->       
                     <!-- <a href="#" class="btn btn-default">Padam Borang Tempahan</a> -->
 
                      <!-- method post define by id -->
                            
-                            <form method="DELETE" action="{{ route('bookingroom.destroyEvent') }}">
+                           <!--  <form method="DELETE" action="{{ route('bookingroom.destroyEvent') }}">
                             <input type="hidden" name="id" value="{{ $bookingrooms->id }}">
 
                              {{ csrf_field() }}
                             <button type="submit" class="btn btn-default delete">Padam Borang Tempahan</button>
                             </form>                               
                 </div>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
 
     </div>
 </div>
