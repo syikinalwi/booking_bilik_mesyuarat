@@ -59,7 +59,7 @@
                             <input type="hidden" name="id" value="{{ $room->id }}">
 
                              {{ csrf_field() }}
-                             <a href="{{ url('/admin/editmeetingroom', '$room->id') }}" class="btn btn-success">Edit</a>
+                             <!-- <a href="{{ url('/admin/editmeetingroom', '$room->id') }}" class="btn btn-success">Edit</a> -->
 
 
                             <button type="submit" class="btn btn-danger delete">Delete</button>
